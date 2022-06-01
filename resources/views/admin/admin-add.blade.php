@@ -119,7 +119,7 @@
                 //监听提交
                 form.on('submit(add)',
                 function(data) {
-                    console.log(data);
+                    //console.log(data);
                     //发异步，把数据提交给php
                     $.ajax({
                         type:'POST',
@@ -132,27 +132,27 @@
                         success:function(data){
                             if(data.status == 0){
                                 console.log(data)
-                                layer.alert(date.message,{icon:6},function(){
+                                layer.alert(data.message,{icon:6},function(){
+                                    //关闭当前frame
+                                    xadmin.close();
+
+                                    // 可以对父窗口进行刷新
+                                    xadmin.father_reload();
 
                                 });
                             }else{
-                                layer.alert(date.message,{icon:6},function(){
+                                layer.alert(data.message,{icon:6},function(){
+                                    //关闭当前frame
+                                    //xadmin.close();
 
+                                    // 可以对父窗口进行刷新
+                                    //xadmin.father_reload();
                                 });
                             }
                         },
                         error:function(){
 
                         }
-                    }),
-
-                    layer.alert("增加成功", {icon: 6},
-                    function() {
-                        //关闭当前frame
-                        xadmin.close();
-
-                        // 可以对父窗口进行刷新
-                        xadmin.father_reload();
                     });
                     return false;
                 });
